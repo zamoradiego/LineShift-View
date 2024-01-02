@@ -1,9 +1,6 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QTableWidget, QTableWidgetItem, QPushButton, QVBoxLayout, QHBoxLayout, QCheckBox, QAbstractItemView, QColorDialog, QStyledItemDelegate
-from PyQt5.QtCore import Qt, QSize, pyqtSignal
-
 import numpy as np
-import sys
+from PyQt5.QtCore import Qt, QSize, pyqtSignal
 from PyQt5.QtWidgets import QApplication, QWidget, QTableWidget, QTableWidgetItem, QPushButton, QVBoxLayout, QHBoxLayout, QCheckBox, QAbstractItemView, QColorDialog, QStyledItemDelegate, QHeaderView
 from PyQt5.QtGui import QColor
 
@@ -66,35 +63,7 @@ class CustomTableWidget(QTableWidget):
         self.verticalHeader().setVisible(False)
         self.itemChanged.connect(self.item_changed)
 
-        # self.setColumnWidth(0, 1)
-        # self.setColumnWidth(1, 20)
-        self.setColumnWidth(2, 1)
-        # self.setColumnWidth(3, 5)
-
     def add_row(self, number, color=QColor(*np.random.randint(50, 200, 3))):
-        # row_count = self.table.rowCount()
-        # self.table.setRowCount(row_count + 1)
-
-        # checkbox_widget = QCheckBox()
-        # checkbox_widget.setChecked(True)
-
-        # number_item = QTableWidgetItem()
-        # number_item.setData(Qt.DisplayRole, number)  # Default number value is 0
-
-        # button = QPushButton('Delete')
-        # button.clicked.connect(self.delete_row)
-
-        # color_item = QTableWidgetItem()  # Empty item for color selection
-        # color_item.setBackground(color)
-
-        # self.table.setCellWidget(row_count, 0, checkbox_widget)
-        # self.table.setItem(row_count, 1, number_item)
-        # self.table.setItem(row_count, 2, color_item)
-        # self.table.setCellWidget(row_count, 3, button)
-
-        # # Connect the stateChanged signal of the checkbox widget to the custom slot
-        # checkbox_widget.stateChanged.connect(lambda state, row=row_count: self.checkbox_state_changed(row, state))
-
         row_count = self.rowCount()
         self.setRowCount(row_count + 1)
 
@@ -139,13 +108,9 @@ class CustomTableWidget(QTableWidget):
         self.send_number_graph_signal.emit(float(number), current_row)
 
         if current_row >= 0:
-            # Update the number in the selected row
-            # number_item = QTableWidgetItem()
-            # number_item.setData(Qt.DisplayRole, number)
             number_item = self.item(current_row, 1)
             if number_item:
                 number_item.setData(Qt.DisplayRole, number)
-            #self.table.setItem(current_row, 1, number_item)
 
     def checkbox_state_changed(self, row, state):
         checked = state == Qt.Checked
@@ -164,13 +129,10 @@ class CustomTableWidget(QTableWidget):
             print(f'Item in row {row}, column 1 changed to: {text}')
 
 
-
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = QWidget()
     window.setWindowTitle('Testing')
-
-
     layout = QVBoxLayout(window)
         #TESTING BUTTON
     button = QPushButton('Add', window)

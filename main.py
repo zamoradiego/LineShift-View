@@ -1,21 +1,14 @@
-from specvis_test2 import Ui_MainWindow
-from PyQt5.QtWidgets import QFileDialog, QAbstractItemView, QHeaderView, QTableWidgetItem, QTableView, QListView, QListWidgetItem, QApplication, QMainWindow, QSlider, QLineEdit, QPushButton, QListWidget, QVBoxLayout, QHBoxLayout, QLabel, QMenu, QAction
-from PyQt5.QtCore import QRect, Qt, pyqtSignal, QAbstractTableModel
-from PyQt5.QtGui import QColor, QStandardItemModel, QStandardItem, QBrush
+from layout import Ui_MainWindow
+from PyQt5.QtWidgets import QFileDialog, QApplication, QMainWindow, QMenu, QAction, QInputDialog
+from PyQt5.QtCore import QRect, pyqtSignal
+from PyQt5.QtGui import QColor
 import pyqtgraph as pg
-import os
 import numpy as np
 from back import Processor
 from collections import defaultdict
 from os.path import join
 from astropy.io import ascii
 PATH = './files/'
-
-import pyqtgraph as pg
-from PyQt5.QtWidgets import QApplication, QAction, QInputDialog
-
-import pyqtgraph as pg
-from PyQt5.QtWidgets import QApplication, QAction, QMenu, QInputDialog
 
 class CustomPlotWidget(pg.PlotWidget):
     def __init__(self, parent=None, **kargs):
@@ -89,8 +82,6 @@ class MyWidget(QMainWindow, Ui_MainWindow):
         # self.setup_table()
 
         self.list_lines = defaultdict(dict)
-
-        self.path = '/home/diego/Desktop/Taller/data/1d_spectra/SGAS1226/1d_spectra'
         self.lines_file = 'common_lines.dat'
         self.init_lines()
 
@@ -176,9 +167,6 @@ class MyWidget(QMainWindow, Ui_MainWindow):
     def checkbox_lines(self, row_number, state):
         for line in list(self.list_lines[row_number].values()):
             line.setVisible(state)
-
-    # def autoscale(self):
-    #     self.graph.setYRange(np.min(y), np.max(y))
 
 if __name__ == '__main__':
     import sys

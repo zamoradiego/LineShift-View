@@ -1,13 +1,10 @@
-from os.path import join
 from astropy.io import ascii
 from PyQt5.QtCore import QObject, pyqtSignal
 from collections import defaultdict
 from astropy.table import Table
 import numpy as np
 
-
 PATH = './files/'
-
 
 def read_to_table(path, header_start=0, data_start=1):
     with open(path, 'r') as file:
@@ -37,7 +34,6 @@ class Processor(QObject):
         self.signal_coordinates = None
         self.signal_catalog = None
         self.signal_specname.connect(self.open_file)
-        self.path = '/home/diego/Desktop/Taller/data/1d_spectra/SGAS1226/1d_spectra'
         self.lines_file = 'common_lines.dat'
 
     def open_file(self, file_name):
