@@ -9,8 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from slider_dial import SliderDialWidget
-from test import CustomTableWidget
+from slider_dial_widget import SliderDialWidget
+from table_widget import CustomTableWidget
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
